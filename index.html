@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLD Simulator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1, h2 {
+            color: #4a4a68;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5c67f2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #4a54e1;
+        }
+        .separator {
+            border-top: 2px solid #ccc;
+            margin: 30px 0;
+        }
+        #conversion-results, #operation-results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DLD Simulator</h1>
+
+        <h2>Base Converter</h2>
+        <form id="conversion-form">
+            <div class="form-group">
+                <label for="number">Number:</label>
+                <input type="text" id="number" required>
+            </div>
+            <div class="form-group">
+                <label for="from_base">From Base:</label>
+                <!-- Updated max value from 16 to 20 to match backend logic -->
+                <input type="number" id="from_base" required min="2" max="20">
+            </div>
+            <div class="form-group">
+                <label for="to_base">To Base:</label>
+                <!-- Updated max value from 16 to 20 to match backend logic -->
+                <input type="number" id="to_base" required min="2" max="20">
+            </div>
+            <button type="submit">Convert</button>
+        </form>
+
+        <div id="conversion-results">
+            <h3>Conversion Results:</h3>
+            <pre id="conversion-result-text"></pre>
+        </div>
+
+        <div class="separator"></div>
+
+        <h2>Binary Operations</h2>
+        <form id="operation-form">
+            <div class="form-group">
+                <label for="binary1">Binary Number 1:</label>
+                <input type="text" id="binary1" required>
+            </div>
+            <div class="form-group">
+                <label for="binary2">Binary Number 2:</label>
+                <input type="text" id="binary2" required>
+            </div>
+            <div class="form-group">
+                <label for="num_bits">Number of Bits:</label>
+                <input type="number" id="num_bits" required min="1">
+            </div>
+            <div class="form-group">
+                <label for="operation">Operation:</label>
+                <select id="operation">
+                    <option value="add">Addition</option>
+                    <option value="subtract">Subtraction</option>
+                    <option value="multiply">Multiplication</option>
+                    <option value="divide">Division</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="representation">Representation:</label>
+                <select id="representation">
+                    <option value="unsigned">Unsigned</option>
+                    <option value="signed">Signed (Sign-Magnitude)</option>
+                    <option value="ones_complement">1's Complement</option>
+                    <option value="twos_complement">2's Complement</option>
+                </select>
+            </div>
+            <button type="submit">Calculate</button>
+        </form>
+        
+        <div id="operation-results">
+            <h3>Binary Operation Results:</h3>
+            <pre id="operation-result-text"></pre>
+        </div>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>
